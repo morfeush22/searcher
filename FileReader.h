@@ -7,8 +7,8 @@
 
 class FileReader {
 public:
-	FileReader(const std::string &path, std::size_t buffer_size = 1024,
-			std::size_t prefix_size = 3, std::size_t suffix_size = 3, std::size_t max_str_size = 128);
+	FileReader(const std::string &path, std::size_t prefix_size, std::size_t suffix_size, std::size_t max_str_size,
+			std::size_t buffer_size = 1024);
 	virtual ~FileReader();
 
 	FileReader(FileReader &&other);

@@ -4,8 +4,8 @@
 #include <iostream>
 #include <utility>
 
-FileReader::FileReader(const std::string &path, std::size_t buffer_size,
-		std::size_t prefix_size, std::size_t suffix_size, std::size_t max_str_size):
+FileReader::FileReader(const std::string &path, std::size_t prefix_size, std::size_t suffix_size, std::size_t max_str_size,
+		std::size_t buffer_size):
 path_{path},
 kBufferSize{buffer_size},
 kPrefixSize{prefix_size},
@@ -60,11 +60,9 @@ kUnguardedSize{other.kUnguardedSize}
 }
 
 FileReader & FileReader::operator=(FileReader &&other) {
-	using namespace std;
-
-	swap(path_, other.path_);
-	swap(hook_, other.hook_);
-	swap(buffer_, other.buffer_);
+	std::swap(path_, other.path_);
+	std::swap(hook_, other.hook_);
+	std::swap(buffer_, other.buffer_);
 
 	return *this;
 }
