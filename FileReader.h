@@ -11,8 +11,8 @@ public:
 			std::size_t buffer_size = 1024);
 	virtual ~FileReader();
 
-	FileReader(FileReader &&other);
-	FileReader & operator=(FileReader &&other);
+	FileReader(FileReader &&other) = default;
+	FileReader & operator=(FileReader &&other) = default;
 
 	char * begin();
 	char * end();
@@ -26,6 +26,12 @@ public:
 	bool valid() const noexcept {
 		return (hook_.rdstate() & (std::ifstream::failbit | std::ifstream::badbit)) == 0;
 	}
+
+	/*
+	std::string path() const noexcept {
+		return path_;
+	}
+	*/
 
 	bool Read();
 

@@ -8,7 +8,7 @@ public:
 	Printer() = default;
 	virtual ~Printer() = default;
 
-	virtual void Print(const std::string &path, std::string str) {
+	virtual void Print(const std::string &path, std::string str) const {
 		std::cout << path << str << "\n";
 	}
 };

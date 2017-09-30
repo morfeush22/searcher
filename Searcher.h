@@ -6,6 +6,7 @@
 #include <fstream>
 #include <memory>
 #include <cctype>
+#include <utility>
 
 
 class Searcher {
@@ -13,6 +14,8 @@ public:
 	Searcher(const std::string &path, const std::string &str,
 			std::size_t prefix_size = 3, std::size_t suffix_size = 3, std::size_t max_str_size = 128);
 
+	Searcher(Searcher &&other) = default;
+	Searcher & operator=(Searcher &&other) = default;
 	virtual ~Searcher() = default;
 
 	std::string Search();

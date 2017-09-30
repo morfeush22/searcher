@@ -38,6 +38,7 @@ FileReader::~FileReader() {
 	}
 }
 
+/*
 FileReader::FileReader(FileReader &&other):
 kBufferSize{other.kBufferSize},
 kPrefixSize{other.kPrefixSize},
@@ -51,6 +52,7 @@ kUnguardedSize{other.kUnguardedSize}
 	buffer_ = std::move(other.buffer_);
 }
 
+
 FileReader & FileReader::operator=(FileReader &&other) {
 	std::swap(path_, other.path_);
 	std::swap(hook_, other.hook_);
@@ -58,6 +60,7 @@ FileReader & FileReader::operator=(FileReader &&other) {
 
 	return *this;
 }
+*/
 
 const char * FileReader::cbegin() {
 	return begin();
