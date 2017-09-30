@@ -27,7 +27,7 @@ void Searcher::ComposeString(std::size_t offset, std::string *str) {
 	str->assign(itr_ - prefix_size, prefix_size + str_size + suffix_size);
 
 	std::stringstream ss;
-	ss << "(" << file_reader_.file_pos() + offset << ")";
+	ss << "(" << file_reader_.file_pos() + offset << "):";
 
 	str->insert(0, ss.str());
 }
