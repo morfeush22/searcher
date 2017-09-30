@@ -14,19 +14,11 @@ kMaxStrSize{max_str_size},
 kGuardSize{prefix_size + max_str_size + suffix_size},
 kUnguardedSize{kBufferSize - kGuardSize}
 {
-	if (hook_.is_open()) {
-		std::cout << "file already open...\n";
+	hook_.open(path);
+	if (!valid()) {
+		std::cout << "error opening file...\n";
 	}
 	else {
-		try {
-			hook_.open(path);
-		}
-		catch (...)
-		{
-			std::cout << "error opening file...\n";
-			throw;
-		}
-
 		hook_.seekg(0, hook_.end);
 		file_size_ = hook_.tellg();
 		hook_.seekg(0, hook_.beg);

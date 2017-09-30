@@ -44,6 +44,10 @@ void Searcher::ReadFirstSegment() {
 }
 
 std::string Searcher::Search() {
+	if (!file_reader_.valid()) {
+		return {};
+	}
+
 	if (itr_ == nullptr) {
 		ReadFirstSegment();
 	}

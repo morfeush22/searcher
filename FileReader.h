@@ -23,6 +23,10 @@ public:
 		return file_pos_;
 	}
 
+	bool valid() const noexcept {
+		return (hook_.rdstate() & (std::ifstream::failbit | std::ifstream::badbit)) == 0;
+	}
+
 	bool Read();
 
 	enum class OffsetPosition {
