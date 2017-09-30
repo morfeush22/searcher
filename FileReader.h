@@ -68,6 +68,8 @@ private:
 
 	std::unique_ptr<char []> buffer_;
 
+	bool first_read_ = true;
+
 	std::size_t size_read_ = 0;
 	std::size_t c_buffer_len_ = 0;
 	std::size_t c_buffer_len_unsafe_ = 0;

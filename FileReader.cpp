@@ -84,8 +84,6 @@ char * FileReader::end() {
 }
 
 bool FileReader::Read() {
-	static bool first_read = true;
-
 	auto size = DataSizeInGuarded();
 
 	std::size_t read;
@@ -96,9 +94,9 @@ bool FileReader::Read() {
 		c_buffer_len_ = c_buffer_len_unsafe_ = size;
 	}
 
-	if (first_read) {
+	if (first_read_) {
 		read = ReadFirstChunk();
-		first_read = false;
+		first_read_ = false;
 	}
 	else {
 		file_pos_ += kUnguardedSize;
