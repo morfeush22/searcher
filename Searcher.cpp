@@ -1,6 +1,7 @@
 #include "Searcher.h"
 
 #include <iostream>
+#include <sstream>
 #include <cstring>
 #include <algorithm>
 #include <utility>
@@ -24,6 +25,11 @@ void Searcher::ComposeString(std::size_t offset, std::string *str) {
 	auto suffix_size = (buffer_size - offset - str_size) > kSuffixSize ? kSuffixSize : buffer_size - offset - str_size;
 
 	str->assign(itr_ - prefix_size, prefix_size + str_size + suffix_size);
+
+	std::stringstream ss;
+	ss << "(" << file_reader_.file_pos() + offset << ")";
+
+	str->insert(0, ss.str());
 }
 
 auto Searcher::SelectPositionDependentAction(FileReader::OffsetPosition pos) {
