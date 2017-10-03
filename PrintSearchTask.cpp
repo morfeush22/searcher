@@ -11,6 +11,6 @@ searcher_{std::move(searcher)}
 void PrintSearchTask::operator ()() {
 	std::string str;
 	while(!(str = searcher_->Search()).empty()) {
-		printer_->Print(searcher_->FilePath(), str);
+		printer_->Print(searcher_->FilePath(), std::move(str));
 	}
 }
