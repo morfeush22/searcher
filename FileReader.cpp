@@ -16,7 +16,7 @@ kUnguardedSize{kBufferSize - kGuardSize}
 {
 	hook_.open(path);
 	if (!valid()) {
-		std::cout << "error opening file...\n";
+		std::cerr << "error opening file... " << path_ << "\n";
 	}
 	else {
 		hook_.seekg(0, hook_.end);
@@ -33,34 +33,10 @@ FileReader::~FileReader() {
 			hook_.close();
 		}
 		catch (...) {
-			std::cout << "error closing file...\n";
+			std::cerr << "error closing file... " << path_ << "\n";
 		}
 	}
 }
-
-/*
-FileReader::FileReader(FileReader &&other):
-kBufferSize{other.kBufferSize},
-kPrefixSize{other.kPrefixSize},
-kSuffixSize{other.kSuffixSize},
-kMaxStrSize{other.kMaxStrSize},
-kGuardSize{other.kGuardSize},
-kUnguardedSize{other.kUnguardedSize}
-{
-	path_ = std::move(other.path_);
-	hook_ = std::move(other.hook_);
-	buffer_ = std::move(other.buffer_);
-}
-
-
-FileReader & FileReader::operator=(FileReader &&other) {
-	std::swap(path_, other.path_);
-	std::swap(hook_, other.hook_);
-	std::swap(buffer_, other.buffer_);
-
-	return *this;
-}
-*/
 
 const char * FileReader::cbegin() {
 	return begin();
