@@ -8,22 +8,22 @@
 
 class PrintSearchTask {
 public:
-	PrintSearchTask(const Printer &printer, Searcher &&searcher, const std::string &path);
+	PrintSearchTask(const std::unique_ptr<Printer> &printer, std::unique_ptr<Searcher> searcher);
 	virtual ~PrintSearchTask() = default;
 
 	PrintSearchTask(PrintSearchTask &&other):
 		printer_{other.printer_},
-		searcher_{std::move(other.searcher_)},
-		path_{std::move(other.path_)}
+		searcher_{std::move(other.searcher_)}
+		//path_{std::move(other.path_)}
 	{
 	}
 
 	void operator()();
 
 private:
-	const Printer &printer_;
-	Searcher searcher_;
-	const std::string path_;
+	const std::unique_ptr<Printer> &printer_;
+	std::unique_ptr<Searcher> searcher_;
+	//const std::string path_;
 };
 
 #endif /* PRINTSEARCHTASK_H_ */
