@@ -8,8 +8,8 @@
 
 class SearcherFactory {
 public:
-	SearcherFactory();
-	virtual ~SearcherFactory();
+	SearcherFactory() = default;
+	virtual ~SearcherFactory() = default;
 
 	virtual std::unique_ptr<Searcher> Create(const std::string &path, const std::string &str, std::size_t prefix_size = 3, std::size_t suffix_size = 3, std::size_t max_str_size = 128);
 };
