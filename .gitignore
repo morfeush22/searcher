@@ -4,3 +4,8 @@
 Debug
 a
 vgcore.*
+CMakeFiles
+Makefile
+cmake_install.cmake
+searcher
+CMakeCache.txt
