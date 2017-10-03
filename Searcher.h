@@ -11,14 +11,16 @@
 
 class Searcher {
 public:
-	Searcher(const std::string &path, const std::string &str,
-			std::size_t prefix_size = 3, std::size_t suffix_size = 3, std::size_t max_str_size = 128);
+	Searcher(const std::string &str, FileReader &&file_reader, std::size_t prefix_size, std::size_t suffix_size);
 
 	Searcher(Searcher &&other) = default;
 	Searcher & operator=(Searcher &&other) = default;
 	virtual ~Searcher() = default;
 
 	std::string Search();
+	const std::string & FilePath() const {
+		return file_reader_.path();
+	}
 
 private:
 	enum {
@@ -34,10 +36,9 @@ private:
 
 	const std::size_t kPrefixSize;
 	const std::size_t kSuffixSize;
-	const std::size_t kMaxStrSize;
 
-	std::string str_;
 	FileReader file_reader_;
+	const std::string str_;
 	bool skip_ = false;
 	const char * itr_ = nullptr;
 };

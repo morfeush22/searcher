@@ -1,20 +1,17 @@
 #include "Searcher.h"
-
 #include <iostream>
 #include <sstream>
 #include <cstring>
 #include <algorithm>
 #include <utility>
 
-
-Searcher::Searcher(const std::string &path, const std::string &str,
-		std::size_t prefix_size, std::size_t suffix_size, std::size_t max_str_size):
+Searcher::Searcher(const std::string &str, FileReader &&file_reader,
+		std::size_t prefix_size, std::size_t suffix_size):
 kPrefixSize{prefix_size},
 kSuffixSize{suffix_size},
-kMaxStrSize{max_str_size},
-file_reader_{path, prefix_size, suffix_size, max_str_size}
+file_reader_{std::move(file_reader)},
+str_{str}
 {
-	str_ = str;	//TODO verification, maybe factory method
 }
 
 void Searcher::ComposeString(std::size_t offset, std::string *str) {

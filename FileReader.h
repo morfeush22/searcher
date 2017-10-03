@@ -9,10 +9,10 @@ class FileReader {
 public:
 	FileReader(const std::string &path, std::size_t prefix_size, std::size_t suffix_size, std::size_t max_str_size,
 			std::size_t buffer_size = 1024);
-	virtual ~FileReader();
 
 	FileReader(FileReader &&other) = default;
 	FileReader & operator=(FileReader &&other) = default;
+	virtual ~FileReader();
 
 	char * begin();
 	char * end();
@@ -27,11 +27,9 @@ public:
 		return (hook_.rdstate() & (std::ifstream::failbit | std::ifstream::badbit)) == 0;
 	}
 
-	/*
-	std::string path() const noexcept {
+	const std::string & path() const {
 		return path_;
 	}
-	*/
 
 	bool Read();
 
